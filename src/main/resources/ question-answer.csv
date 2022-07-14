@@ -1,0 +1,17 @@
+hello,world,false
+hello,there,true
+hello,lady,false
+hello,gentlemen,false
+language,java,true
+language,с#,false
+language,c++,false
+language,python,false
+format,csv,true
+format,docx,false
+format,txt,false
+application,web,true
+application,console,false
+application,desktop-forms,false
+archive,jar,true
+archive,war,false
+archive,zip,false
