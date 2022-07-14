@@ -2,5 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="printService" class="service.impl.ConsolePrintServiceImpl"/>
+    <bean id="readerService" class="service.impl.CsvReaderServiceImpl"/>
+    <bean id="questionMapper" class="persistence.mapper.QuestionMapper"/>
+    <bean id="questionService" class="service.impl.QuestionServiceImpl">
+        <constructor-arg name="readerService" ref="readerService"/>
+        <constructor-arg name="questionMapper" ref="questionMapper"/>
+    </bean>
 
 </beans>
