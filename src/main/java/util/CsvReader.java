@@ -9,11 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CsvReader {
-    private static final String RESOURCE_PATH = "question-answer.csv";
-
-    public static List<String[]> readResource() {
+    public static List<String[]> readResource(String resourcePath) {
         try {
-            var resource = new DefaultResourceLoader().getResource("classpath:" + RESOURCE_PATH);
+            var resource = new DefaultResourceLoader().getResource("classpath:" + resourcePath);
             var reader = new InputStreamReader(resource.getInputStream());
             var csvReader = new CSVReader(reader);
             var list = csvReader.readAll();

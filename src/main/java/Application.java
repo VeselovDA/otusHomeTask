@@ -1,15 +1,25 @@
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+import persistence.model.Question;
 import service.PrintService;
 import service.QuestionService;
+import service.TestingService;
 
+import java.util.List;
+
+@ComponentScan(basePackages = "config,service")
+@Component
 public class Application {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
+        var context = new AnnotationConfigApplicationContext(Application.class);
 
         var printService = (PrintService) context.getBean("printService");
         var questionService = (QuestionService) context.getBean("questionService");
+        var testingService = (TestingService) context.getBean("testingService");
 
-        printService.printList(questionService.getAllQuestion());
-
+        List<Question> allQuestion = questionService.getAllQuestion();
+        printService.printList(allQuestion);
+        testingService.startTest(allQuestion);
     }
 }

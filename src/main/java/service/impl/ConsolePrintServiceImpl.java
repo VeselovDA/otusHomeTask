@@ -1,9 +1,10 @@
 package service.impl;
 
+import org.springframework.stereotype.Service;
 import service.PrintService;
 
 import java.util.List;
-
+@Service("printService")
 public class ConsolePrintServiceImpl implements PrintService {
 
     @Override
