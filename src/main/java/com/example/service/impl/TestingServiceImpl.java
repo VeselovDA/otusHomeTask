@@ -1,5 +1,7 @@
 package com.example.service.impl;
 
+import com.example.service.QuestionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -11,12 +13,15 @@ import java.util.List;
 
 @Service("testingService")
 @PropertySource("classpath:application.properties")
+@RequiredArgsConstructor
 public class TestingServiceImpl implements TestingService {
+    private final QuestionService questionService;
     @Value("${edgePassage}")
     private Integer edgePassage;
     @Override
-    public void startTest(List<Question> questions) {
-        double currentCountRightAnswer=0d;
+    public void startTest() {
+        var questions=questionService.getAllQuestion();
+        var currentCountRightAnswer=0d;
 
         for (var question:questions) {
             if(getAnswer(question)){
@@ -32,8 +37,8 @@ public class TestingServiceImpl implements TestingService {
     }
     private boolean getAnswer(Question question){
         System.out.println(question.getQuestion());
-        String answerString = ConsoleReader.readConsole();
-        List<String> answers = List.of(answerString.split(" "));
+        var answerString = ConsoleReader.readConsole();
+        var answers = List.of(answerString.split(" "));
         return question.getRightAnswers().containsAll(answers);
     }
 }
