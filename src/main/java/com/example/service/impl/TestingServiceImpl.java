@@ -1,15 +1,13 @@
-package service.impl;
+package com.example.service.impl;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
-import persistence.model.Question;
-import service.TestingService;
-import util.ConsoleReader;
+import com.example.persistence.model.Question;
+import com.example.service.TestingService;
+import com.example.util.ConsoleReader;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Service("testingService")
 @PropertySource("classpath:application.properties")
@@ -37,7 +35,5 @@ public class TestingServiceImpl implements TestingService {
         String answerString = ConsoleReader.readConsole();
         List<String> answers = List.of(answerString.split(" "));
         return question.getRightAnswers().containsAll(answers);
-
-
     }
 }

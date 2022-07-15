@@ -1,6 +1,6 @@
-package service;
+package com.example.service;
 
-import persistence.model.Question;
+import com.example.persistence.model.Question;
 
 import java.util.List;
 

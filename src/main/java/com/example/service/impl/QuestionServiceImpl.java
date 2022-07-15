@@ -1,11 +1,11 @@
-package service.impl;
+package com.example.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import persistence.mapper.QuestionMapper;
-import persistence.model.Question;
-import service.QuestionService;
-import service.ReaderService;
+import com.example.persistence.mapper.QuestionMapper;
+import com.example.persistence.model.Question;
+import com.example.service.QuestionService;
+import com.example.service.ReaderService;
 
 import java.util.List;
 @Service("questionService")

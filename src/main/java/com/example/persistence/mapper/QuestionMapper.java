@@ -1,6 +1,6 @@
-package persistence.mapper;
+package com.example.persistence.mapper;
 
-import persistence.model.Question;
+import com.example.persistence.model.Question;
 
 import java.util.ArrayList;
 import java.util.Arrays;

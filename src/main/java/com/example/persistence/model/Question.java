@@ -1,4 +1,4 @@
-package persistence.model;
+package com.example.persistence.model;
 
 import lombok.Data;
 

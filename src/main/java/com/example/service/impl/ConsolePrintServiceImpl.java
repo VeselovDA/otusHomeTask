@@ -1,7 +1,7 @@
-package service.impl;
+package com.example.service.impl;
 
 import org.springframework.stereotype.Service;
-import service.PrintService;
+import com.example.service.PrintService;
 
 import java.util.List;
 @Service("printService")
