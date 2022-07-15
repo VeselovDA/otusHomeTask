@@ -16,14 +16,14 @@ public class TestingServiceImpl implements TestingService {
     private Integer edgePassage;
     @Override
     public void startTest(List<Question> questions) {
-        var currentCountRightAnswer= new AtomicReference<Double>();
-        currentCountRightAnswer.getAndSet(0d);
-        questions.forEach(question -> {
+        double currentCountRightAnswer=0d;
+
+        for (var question:questions) {
             if(getAnswer(question)){
-                currentCountRightAnswer.getAndSet(currentCountRightAnswer.get()+1);
+                currentCountRightAnswer++;
             }
-        });
-        var result=(currentCountRightAnswer.get()/questions.size())*100;
+        }
+        var result=(currentCountRightAnswer/questions.size())*100;
         if(result>edgePassage){
             System.out.println("Congratulation! Your result:"+result +"%");
         } else {
