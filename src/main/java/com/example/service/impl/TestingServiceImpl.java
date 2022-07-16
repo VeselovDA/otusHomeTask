@@ -12,7 +12,7 @@ import com.example.util.ConsoleReader;
 import java.util.List;
 
 @Service("testingService")
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application.yaml")
 @RequiredArgsConstructor
 public class TestingServiceImpl implements TestingService {
     private final QuestionService questionService;

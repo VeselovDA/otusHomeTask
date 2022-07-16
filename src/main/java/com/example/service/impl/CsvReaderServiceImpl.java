@@ -8,7 +8,7 @@ import com.example.util.CsvReader;
 
 import java.util.List;
 @Service("readerService")
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application.yaml")
 public class CsvReaderServiceImpl implements ReaderService {
     @Value("${resourcePath}")
     private String resourcePath;
