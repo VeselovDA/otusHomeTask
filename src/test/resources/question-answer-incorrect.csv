@@ -1,0 +1,9 @@
+hello,world,true
+hello,there,true
+hello,lady,false
+hello,gentlemen,false
+language,java,true
+language,с#,false
+language,c++,false
+language,python,false
+format,ruby
