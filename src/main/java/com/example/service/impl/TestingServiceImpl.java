@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.example.service.UIService;
 import com.example.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,10 +9,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import com.example.persistence.model.Question;
 import com.example.service.TestingService;
-import com.example.util.ConsoleReader;
 
-import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service("testingService")
 @PropertySource("classpath:application.yaml")
@@ -19,6 +19,7 @@ import java.util.Locale;
 public class TestingServiceImpl implements TestingService {
     private final QuestionService questionService;
     private final MessageSource messageSource;
+    private final UIService UIService;
     @Value("${locale}")
     private  Locale locale;
     @Value("${edgePassage}")
@@ -28,8 +29,9 @@ public class TestingServiceImpl implements TestingService {
         var questions=questionService.getAllQuestion();
         var currentCountRightAnswer=0d;
 
+        var stringListMap = UIService.readConsole(questions.stream().map(Question::getQuestion).collect(Collectors.toList()));
         for (var question:questions) {
-            if(getAnswer(question)){
+            if(question.getRightAnswers().containsAll(stringListMap.get(question.getQuestion()))){
                 currentCountRightAnswer++;
             }
         }
@@ -41,12 +43,5 @@ public class TestingServiceImpl implements TestingService {
             System.out.println(messageSource.getMessage("failed",new String[]{String.valueOf(result)}, locale ));
             return false;
         }
-    }
-    private boolean getAnswer(Question question){
-        System.out.println(question.getQuestion());
-        System.out.println(messageSource.getMessage("write_answer",new String[]{}, locale ));
-        var answerString = ConsoleReader.readConsole();
-        var answers = List.of(answerString.split(" "));
-        return question.getRightAnswers().containsAll(answers);
     }
 }
