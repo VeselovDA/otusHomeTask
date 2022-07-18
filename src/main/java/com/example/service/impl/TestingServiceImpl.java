@@ -24,7 +24,7 @@ public class TestingServiceImpl implements TestingService {
     @Value("${edgePassage}")
     private Integer edgePassage;
     @Override
-    public void startTest() {
+    public boolean startTest() {
         var questions=questionService.getAllQuestion();
         var currentCountRightAnswer=0d;
 
@@ -34,10 +34,12 @@ public class TestingServiceImpl implements TestingService {
             }
         }
         var result=(currentCountRightAnswer/questions.size())*100;
-        if(result>edgePassage){
+        if(result>=edgePassage){
             System.out.println(messageSource.getMessage("congratulation",new String[]{String.valueOf(result)}, locale ));
+            return true;
         } else {
             System.out.println(messageSource.getMessage("failed",new String[]{String.valueOf(result)}, locale ));
+            return false;
         }
     }
     private boolean getAnswer(Question question){

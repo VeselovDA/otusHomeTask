@@ -5,5 +5,5 @@ import com.example.persistence.model.Question;
 import java.util.List;
 
 public interface TestingService {
-    void startTest();
+    boolean startTest();
 }
